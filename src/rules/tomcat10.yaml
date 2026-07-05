@@ -1,0 +1,136 @@
+# Tomcat 10 마이그레이션 규칙
+server: tomcat
+version: "10"
+
+connector:
+  - name: port
+    attribute: port
+    description: 커넥터 포트
+    type: port
+    default: 8080
+    
+  - name: protocol
+    attribute: protocol
+    description: 프로토콜
+    type: string
+    default: "HTTP/1.1"
+    
+  - name: connectionTimeout
+    attribute: connectionTimeout
+    description: 연결 타임아웃 (ms)
+    type: numeric
+    default: 20000
+    
+  - name: maxThreads
+    attribute: maxThreads
+    description: 최대 스레드 수
+    type: numeric
+    default: 200
+    min: 1
+    
+  - name: minSpareThreads
+    attribute: minSpareThreads
+    description: 최소 예비 스레드 수
+    type: numeric
+    default: 10
+    min: 1
+    
+  - name: acceptCount
+    attribute: acceptCount
+    description: 대기열 크기
+    type: numeric
+    default: 100
+    min: 1
+    
+  - name: maxConnections
+    attribute: maxConnections
+    description: 최대 연결 수
+    type: numeric
+    default: 8192
+    min: 1
+    
+  - name: URIEncoding
+    attribute: URIEncoding
+    description: URI 인코딩
+    type: string
+    recommended: "UTF-8"
+    
+  - name: compression
+    attribute: compression
+    description: 압축 사용 여부
+    type: boolean
+    default: "off"
+
+executor:
+  - name: name
+    attribute: name
+    description: 실행기 이름
+    type: string
+    
+  - name: maxThreads
+    attribute: maxThreads
+    description: 최대 스레드 수
+    type: numeric
+    default: 200
+    
+  - name: minSpareThreads
+    attribute: minSpareThreads
+    description: 최소 예비 스레드 수
+    type: numeric
+    default: 10
+    
+  - name: maxIdleTime
+    attribute: maxIdleTime
+    description: 최대 유휴 시간 (ms)
+    type: numeric
+    default: 60000
+
+datasource:
+  - name: name
+    attribute: name
+    description: 데이터소스 이름
+    type: string
+    
+  - name: auth
+    attribute: auth
+    description: 인증 타입
+    type: string
+    default: "Container"
+    
+  - name: type
+    attribute: type
+    description: 리소스 타입
+    type: string
+    
+  - name: driverClassName
+    attribute: driverClassName
+    description: JDBC 드라이버 클래스
+    type: string
+    
+  - name: url
+    attribute: url
+    description: JDBC URL
+    type: string
+    
+  - name: username
+    attribute: username
+    description: 데이터베이스 사용자
+    type: string
+    
+  - name: maxTotal
+    attribute: maxTotal
+    description: 최대 커넥션 수
+    type: numeric
+    default: 8
+    
+  - name: maxIdle
+    attribute: maxIdle
+    description: 최대 유휴 커넥션 수
+    type: numeric
+    default: 8
+    
+  - name: maxWaitMillis
+    attribute: maxWaitMillis
+    description: 최대 대기 시간 (ms)
+    type: numeric
+    default: 10000

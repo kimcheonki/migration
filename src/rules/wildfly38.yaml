@@ -1,0 +1,94 @@
+# Wildfly 38 마이그레이션 귄칙
+server: wildfly
+version: "38"
+
+datasource:
+  - name: jndi-name
+    attribute: jndi-name
+    description: JNDI 이름
+    type: string
+    
+  - name: connection-url
+    element: connection-url
+    description: 연결 URL
+    type: string
+    
+  - name: driver-class
+    element: driver-class
+    description: 드라이버 클래스
+    type: string
+    
+  - name: user-name
+    element: user-name
+    description: 사용자 이름
+    type: string
+    
+  - name: min-pool-size
+    attribute: min-pool-size
+    description: 최소 풀 크기
+    type: numeric
+    default: 0
+    
+  - name: max-pool-size
+    attribute: max-pool-size
+    description: 최대 풀크기
+    type: numeric
+    default: 20
+    
+  - name: idle-timeout-minutes
+    attribute: idle-timeout-minutes
+    description: 유휴 타임아웃 (분)
+    type: numeric
+    default: 10
+
+thread_pool:
+  - name: max-threads
+    attribute: max-threads
+    description: 최대 스레드 수
+    type: numeric
+    default: 64
+    
+  - name: core-threads
+    attribute: core-threads
+    description: 코어 스레드 수
+    type: numeric
+    default: 16
+    
+  - name: queue-length
+    attribute: queue-length
+    description: 대기열 길이
+    type: numeric
+    default: 1000
+
+ssl:
+  - name: enabled
+    attribute: enabled
+    description: SSL 활성화 여부
+    type: boolean
+    
+  - name: key-store
+    attribute: key-store
+    description: 키 스토어 경로
+    type: path
+    
+  - name: key-store-password
+    attribute: key-store-password
+    description: 키 스토어 비밀번호
+    type: string
+    sensitive: true
+    
+  - name: key-alias
+    attribute: key-alias
+    description: 키 별칭
+    type: string
+    
+  - name: enabled-protocols
+    attribute: enabled-protocols
+    description: 활성화된 프로토콜
+    type: string
+    recommended: "TLSv1.2,TLSv1.3"
+    
+  - name: enabled-cipher-suites
+    attribute: enabled-cipher-suites
+    description: 활성화된 암호화 스위트
+    type: string

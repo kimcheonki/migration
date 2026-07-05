@@ -1,0 +1,77 @@
+# Apache 2.4 마이그레이션 규칙
+server: apache
+version: "2.4"
+
+directives:
+  - name: KeepAliveTimeout
+    pattern: KeepAliveTimeout\s+(\d+)
+    description: KeepAliveTimeout 설정
+    type: numeric
+    default: 5
+    min: 1
+    max: 300
+    
+  - name: MaxRequestWorkers
+    pattern: MaxRequestWorkers\s+(\d+)
+    description: 최대 요청 워커 수
+    type: numeric
+    default: 150
+    min: 1
+    
+  - name: ThreadsPerChild
+    pattern: ThreadsPerChild\s+(\d+)
+    description: 자식 프로세스당 스레드 수
+    type: numeric
+    default: 25
+    min: 1
+    
+  - name: ServerLimit
+    pattern: ServerLimit\s+(\d+)
+    description: 최대 서버 프로세스 수
+    type: numeric
+    default: 16
+    min: 1
+    
+  - name: LoadModule
+    pattern: LoadModule\s+(\w+)_module\s+(.+)
+    description: 모듈 로딩
+    type: module
+    check_exists: true
+    
+  - name: Listen
+    pattern: Listen\s+(\d+)
+    description: 리스닝 포트
+    type: port
+    default: 80
+    
+  - name: ServerName
+    pattern: ServerName\s+(.+)
+    description: 서버 이름
+    type: string
+    
+  - name: DocumentRoot
+    pattern: DocumentRoot\s+"(.+)"
+    description: 문서 루트 경로
+    type: path
+
+ssl:
+  - name: SSLEngine
+    pattern: SSLEngine\s+(on|off)
+    description: SSL 엔진 활성화
+    type: boolean
+    
+  - name: SSLCertificateFile
+    pattern: SSLCertificateFile\s+"(.+)"
+    description: SSL 인증서 파일 경로
+    type: path
+    
+  - name: SSLCertificateKeyFile
+    pattern: SSLCertificateKeyFile\s+"(.+)"
+    description: SSL 키 파일 경로
+    type: path
+    
+  - name: SSLProtocol
+    pattern: SSLProtocol\s+(.+)
+    description: SSL 프로토콜
+    type: string
+    recommended: "TLSv1.2 TLSv1.3"

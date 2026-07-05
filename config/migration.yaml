@@ -1,0 +1,49 @@
+# 마이그레이션 설정 파일
+# 전역 마이그레이션 설정
+
+# 로깅 설정
+logging:
+  level: INFO
+  format: "[%(asctime)s] [%(levelname)s] %(message)s"
+  date_format: "%Y-%m-%d %H:%M:%S"
+
+# 출력 설정
+output:
+  default_dir: output
+  create_dir: true
+  overwrite: false
+
+# 레포트 설정
+reports:
+  default_formats:
+    - html
+    - excel
+  html:
+    template: default
+    encoding: utf-8
+  excel:
+    encoding: utf-8
+
+# 파서 설정
+parsers:
+  apache:
+    encoding: utf-8
+    ignore_comments: true
+  tomcat:
+    encoding: utf-8
+    xml_parser: lxml
+  wildfly:
+    encoding: utf-8
+    xml_parser: lxml
+
+# 컨버터 설정
+converters:
+  strict_mode: false
+  preserve_comments: true
+  backup_original: false
+
+# 분석기 설정
+analyzers:
+  check_compatibility: true
+  identify_critical_issues: true
+  generate_statistics: true
