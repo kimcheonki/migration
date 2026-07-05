@@ -236,8 +236,16 @@ def main():
                        choices=['html', 'excel', 'both'],
                        default=['both'],
                        help='레포트 타입 (html, excel, both)')
+    parser.add_argument('--interactive', '-I', action='store_true',
+                       help='대화형 모드 실행')
     
     args = parser.parse_args()
+    
+    # 대화형 모드 실행
+    if args.interactive:
+        from src.interactive import main as interactive_main
+        interactive_main()
+        return
     
     # 마이그레이션 툴 초기화
     tool = MigrationTool(args.rules_dir)

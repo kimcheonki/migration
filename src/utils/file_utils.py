@@ -70,3 +70,8 @@ class FileUtils:
     def ensure_directory(directory: str):
         """디렉토리 생성"""
         os.makedirs(directory, exist_ok=True)
+    
+    @staticmethod
+    def get_file_name(file_path: str) -> str:
+        """파일명 반환"""
+        return os.path.basename(file_path)
