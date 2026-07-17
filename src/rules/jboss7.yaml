@@ -1,0 +1,19 @@
+server: wildfly
+version: "7"
+directives:
+  - name: datasource
+    pattern: datasource.*jndi-name
+    action: keep
+    description: 데이터소스 설정 유지
+  - name: thread-pool
+    pattern: max-pool-size
+    action: keep
+    description: 스레드 풀 설정 유지
+  - name: ssl
+    pattern: ssl.*enabled
+    action: keep
+    description: SSL 설정 유지
+  - name: legacy-attributes
+    pattern: legacy-.*
+    action: deprecated
+    description: JBoss AS 7 레거시 속성은 Wildfly에서 제거됨

@@ -1,0 +1,65 @@
+{
+  "server": "apache",
+  "keywords": {
+    "virtualhost": {
+      "description": "Virtual host configuration",
+      "directives": ["VirtualHost", "ServerName", "ServerAlias", "DocumentRoot"],
+      "priority": "high"
+    },
+    "ssl": {
+      "description": "SSL/TLS configuration",
+      "directives": ["SSLEngine", "SSLCertificateFile", "SSLCertificateKeyFile", "SSLCACertificateFile", "SSLProtocol", "SSLCipherSuite"],
+      "priority": "high"
+    },
+    "module": {
+      "description": "Apache module configuration",
+      "directives": ["LoadModule", "IfModule"],
+      "priority": "medium"
+    },
+    "listen": {
+      "description": "Listening port configuration",
+      "directives": ["Listen", "ListenBackLog"],
+      "priority": "medium"
+    },
+    "directory": {
+      "description": "Directory access configuration",
+      "directives": ["Directory", "Options", "AllowOverride", "Require", "Order", "Allow", "Deny"],
+      "priority": "medium"
+    },
+    "proxy": {
+      "description": "Proxy configuration",
+      "directives": ["ProxyPass", "ProxyPassReverse", "ProxyRequests", "ProxyPreserveHost"],
+      "priority": "high"
+    },
+    "rewrite": {
+      "description": "URL rewrite configuration",
+      "directives": ["RewriteEngine", "RewriteCond", "RewriteRule"],
+      "priority": "medium"
+    },
+    "log": {
+      "description": "Logging configuration",
+      "directives": ["ErrorLog", "CustomLog", "LogFormat", "LogLevel"],
+      "priority": "low"
+    },
+    "mime": {
+      "description": "MIME type configuration",
+      "directives": ["TypesConfig", "AddType", "AddEncoding"],
+      "priority": "low"
+    },
+    "header": {
+      "description": "HTTP header configuration",
+      "directives": ["Header", "RequestHeader"],
+      "priority": "low"
+    },
+    "timeout": {
+      "description": "Timeout configuration",
+      "directives": ["Timeout", "KeepAlive", "KeepAliveTimeout", "MaxKeepAliveRequests"],
+      "priority": "medium"
+    },
+    "worker": {
+      "description": "Worker/mod_jk configuration",
+      "directives": ["JkWorkersFile", "JkMount", "JkShmFile"],
+      "priority": "medium"
+    }
+  }
+}

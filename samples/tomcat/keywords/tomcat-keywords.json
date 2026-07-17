@@ -1,0 +1,77 @@
+{
+  "server": "tomcat",
+  "keywords": {
+    "connector": {
+      "description": "Connector configuration for HTTP/AJP",
+      "elements": ["Connector"],
+      "attributes": ["port", "protocol", "SSLEnabled", "maxThreads", "minSpareThreads", "connectionTimeout"],
+      "priority": "high"
+    },
+    "ssl": {
+      "description": "SSL/TLS configuration",
+      "elements": ["Connector"],
+      "attributes": ["SSLEnabled", "scheme", "secure", "sslProtocol", "keystoreFile", "keystorePass", "keystoreType", "clientAuth"],
+      "priority": "high"
+    },
+    "datasource": {
+      "description": "Database connection configuration",
+      "elements": ["Resource"],
+      "attributes": ["name", "auth", "type", "driverClassName", "url", "username", "password", "maxTotal", "maxIdle", "maxWaitMillis"],
+      "priority": "high"
+    },
+    "jndi": {
+      "description": "JNDI resource configuration",
+      "elements": ["Resource", "ResourceLink", "Environment"],
+      "attributes": ["name", "type", "auth", "factory"],
+      "priority": "medium"
+    },
+    "realm": {
+      "description": "Authentication realm configuration",
+      "elements": ["Realm"],
+      "attributes": ["className", "resourceName", "dataSourceName"],
+      "priority": "high"
+    },
+    "valve": {
+      "description": "Valve configuration for request processing",
+      "elements": ["Valve"],
+      "attributes": ["className", "pattern", "directory", "prefix", "suffix"],
+      "priority": "medium"
+    },
+    "listener": {
+      "description": "Listener configuration",
+      "elements": ["Listener"],
+      "attributes": ["className"],
+      "priority": "low"
+    },
+    "context": {
+      "description": "Context configuration for web applications",
+      "elements": ["Context"],
+      "attributes": ["path", "docBase", "reloadable", "sessionCookieName", "sessionCookiePath"],
+      "priority": "medium"
+    },
+    "host": {
+      "description": "Virtual host configuration",
+      "elements": ["Host"],
+      "attributes": ["name", "appBase", "autoDeploy", "unpackWARs"],
+      "priority": "medium"
+    },
+    "engine": {
+      "description": "Engine configuration",
+      "elements": ["Engine"],
+      "attributes": ["name", "defaultHost"],
+      "priority": "low"
+    },
+    "cluster": {
+      "description": "Clustering configuration",
+      "elements": ["Cluster"],
+      "attributes": ["className", "channelSendOptions"],
+      "priority": "medium"
+    },
+    "session": {
+      "description": "Session manager configuration",
+      "elements": ["Manager"],
+      "attributes": ["className", "maxActiveSessions", "sessionTimeout"],
+      "priority": "medium"
+    }
+  }
+}

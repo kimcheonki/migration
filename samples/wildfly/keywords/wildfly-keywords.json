@@ -1,0 +1,89 @@
+{
+  "server": "wildfly",
+  "keywords": {
+    "datasource": {
+      "description": "Database connection configuration",
+      "xpath": "//datasources/datasource",
+      "attributes": ["jndi-name", "pool-name", "enabled", "use-java-context", "statistics-enabled"],
+      "elements": ["connection-url", "driver", "security", "validation", "pool"],
+      "priority": "high"
+    },
+    "driver": {
+      "description": "Database driver configuration",
+      "xpath": "//datasources/drivers/driver",
+      "attributes": ["name", "module"],
+      "elements": ["driver-class", "xa-datasource-class"],
+      "priority": "high"
+    },
+    "ssl": {
+      "description": "SSL/TLS configuration",
+      "xpath": "//subsystem[@xmlns='urn:wildfly:elytron:*']//tls",
+      "attributes": [],
+      "elements": ["key-stores", "key-managers", "server-ssl-contexts", "client-ssl-contexts"],
+      "priority": "high"
+    },
+    "deployment": {
+      "description": "Application deployment configuration",
+      "xpath": "//deployments/deployment",
+      "attributes": ["name", "runtime-name", "enabled"],
+      "elements": ["content"],
+      "priority": "medium"
+    },
+    "interface": {
+      "description": "Network interface configuration",
+      "xpath": "//interfaces/interface",
+      "attributes": ["name"],
+      "elements": ["inet-address", "any-address", "any-ipv4-address", "any-ipv6-address"],
+      "priority": "medium"
+    },
+    "socket-binding": {
+      "description": "Socket binding configuration",
+      "xpath": "//socket-binding-group/socket-binding",
+      "attributes": ["name", "port", "interface"],
+      "elements": [],
+      "priority": "medium"
+    },
+    "security-realm": {
+      "description": "Security realm configuration",
+      "xpath": "//security-realms/security-realm",
+      "attributes": ["name"],
+      "elements": ["authentication", "authorization", "server-identities"],
+      "priority": "high"
+    },
+    "elytron": {
+      "description": "Elytron security subsystem configuration",
+      "xpath": "//subsystem[@xmlns='urn:wildfly:elytron:*']",
+      "attributes": [],
+      "elements": ["security-domains", "security-realms", "http", "sasl", "tls"],
+      "priority": "high"
+    },
+    "logging": {
+      "description": "Logging configuration",
+      "xpath": "//subsystem[@xmlns='urn:jboss:domain:logging:*']",
+      "attributes": [],
+      "elements": ["console-handler", "periodic-rotating-file-handler", "logger", "root-logger"],
+      "priority": "low"
+    },
+    "system-property": {
+      "description": "System property configuration",
+      "xpath": "//system-properties/system-property",
+      "attributes": ["name", "value"],
+      "elements": [],
+      "priority": "low"
+    },
+    "jvm": {
+      "description": "JVM configuration",
+      "xpath": "//jvm",
+      "attributes": ["name"],
+      "elements": ["heap", "permgen", "jvm-options"],
+      "priority": "medium"
+    },
+    "thread-pool": {
+      "description": "Thread pool configuration",
+      "xpath": "//thread-pools/thread-pool",
+      "attributes": ["name"],
+      "elements": ["max-threads", "keepalive-time"],
+      "priority": "low"
+    }
+  }
+}

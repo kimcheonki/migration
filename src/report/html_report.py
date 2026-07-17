@@ -1,6 +1,7 @@
 """
 HTML 레포트 생성기
 """
+import difflib
 from datetime import datetime
 from typing import List
 from jinja2 import Template

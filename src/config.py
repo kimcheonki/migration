@@ -17,6 +17,9 @@ class Config:
     
     def load_rules(self, server_name: str, version: str) -> Dict:
         """서버별 마이그레이션 규칙 로드"""
+        # 버전에서 숫자만 추출
+        version = ''.join(c for c in version if c.isdigit())
+        
         cache_key = f"{server_name}_{version}"
         
         if cache_key in self._rules_cache:

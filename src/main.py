@@ -5,6 +5,13 @@ import argparse
 import sys
 import os
 from typing import Dict, List
+
+# 현재 디렉토리를 Python path에 추가
+current_dir = os.path.dirname(os.path.abspath(__file__))
+parent_dir = os.path.dirname(current_dir)
+if parent_dir not in sys.path:
+    sys.path.insert(0, parent_dir)
+
 from src.config import Config
 from src.utils.logger import get_logger
 from src.utils.file_utils import FileUtils
@@ -218,13 +225,13 @@ def main():
         '''
     )
     
-    parser.add_argument('--server', '-s', type=str, required=True,
+    parser.add_argument('--server', '-s', type=str,
                        help='서버 이름 (apache, tomcat, wildfly)')
-    parser.add_argument('--from-version', '-f', type=str, required=True,
+    parser.add_argument('--from-version', '-f', type=str,
                        help='AS-IS 버전')
-    parser.add_argument('--to-version', '-t', type=str, required=True,
+    parser.add_argument('--to-version', '-t', type=str,
                        help='TO-BE 버전')
-    parser.add_argument('--input', '-i', type=str, required=True,
+    parser.add_argument('--input', '-i', type=str,
                        help='입력 파일 또는 디렉토리 경로')
     parser.add_argument('--output-dir', '-o', type=str, default='output',
                        help='출력 디렉토리 경로 (기본값: output)')
@@ -237,15 +244,33 @@ def main():
                        default=['both'],
                        help='레포트 타입 (html, excel, both)')
     parser.add_argument('--interactive', '-I', action='store_true',
-                       help='대화형 모드 실행')
+                       help='대화형 모드 실행 (커맨드라인 기반)')
+    parser.add_argument('--gui', '-G', action='store_true',
+                       help='GUI 모드 실행')
     
     args = parser.parse_args()
+    
+    # GUI 모드 실행
+    if args.gui:
+        from src.gui.main_window import main as gui_main
+        gui_main()
+        return
     
     # 대화형 모드 실행
     if args.interactive:
         from src.interactive import main as interactive_main
         interactive_main()
         return
+    
+    # 명령행 모드에서는 필수 인자 검사
+    if not args.server:
+        parser.error("--server/-s 인자가 필요합니다")
+    if not args.from_version:
+        parser.error("--from-version/-f 인자가 필요합니다")
+    if not args.to_version:
+        parser.error("--to-version/-t 인자가 필요합니다")
+    if not args.input:
+        parser.error("--input/-i 인자가 필요합니다")
     
     # 마이그레이션 툴 초기화
     tool = MigrationTool(args.rules_dir)
